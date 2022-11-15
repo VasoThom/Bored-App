@@ -1,13 +1,21 @@
-import { createContext, useState } from "react";
-const activityContext = createContext();
+import { createContext, useState, useEffect } from "react";
+export const ActivityContext = createContext();
 
 export default function ActivitiesContext({ children }) {
-  const { activity } = useState(activityContext);
+  const [activities, setActivities] = useState({});
+  useEffect(() => {
+    fetch("http://www.boredapi.com/api/activity/")
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => setActivities(json));
+  }, []);
+  console.log(activities);
   return (
     <div>
-      <activityContext.Provider value={{ activity: activity }}>
+      <ActivityContext.Provider value={{ activities: activities }}>
         {children}
-      </activityContext.Provider>
+      </ActivityContext.Provider>
     </div>
   );
 }

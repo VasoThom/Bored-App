@@ -1,23 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { ActivityContext } from "../context/ActivitiesContext";
 
 export default function Activities() {
-  const [activities, setActivities] = useState([]);
-  useEffect(() => {
-    fetch("http://www.boredapi.com/api/activity/")
-      .then((response) => {
-        return response.json();
-      })
-      .then((json) => setActivities(json));
-  }, []);
-  console.log(activities);
+  const { activities } = useContext(ActivityContext);
+
   return (
     <div>
       <h1>Activities</h1>
-      {activities.map((activ) => (
-        <div>
-          <h2> {activ.activity}</h2>
-        </div>
-      ))}
+      <div>
+        <h2>Activity: {activities.activity}</h2>
+        <p>accessibility :{activities.accessibility}</p>
+        <p>price: {activities.price}</p>
+        {activities.link ? <a href={activities.link}>link</a> : null}
+
+        <p>key:{activities.key}</p>
+      </div>
     </div>
   );
 }
