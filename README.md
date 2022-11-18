@@ -1,6 +1,9 @@
 # Bored-App
 
 
+
+
+
 Erstelle eine App, die Vorschläge für Wochenendaktivitäten ausgibt. Verwende hierfür die Bored API: https://www.boredapi.com/documentation
 1. Zeige eine zufällige Aktivität an. Mit Klick auf auf einem Button soll eine neue Aktivität angezeigt werden.
 
